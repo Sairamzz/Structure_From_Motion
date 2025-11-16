@@ -48,11 +48,9 @@ Full RANSAC-based estimator: repeatedly samples 8 correspondences → computes F
 
 3. Essential Matrix:
 
-*E=KTFK*
-
-K - Camera Intrinsic Matrix
-
-F - Fundamental Matrix
+- *E=KTFK*
+  - K - Camera Intrinsic Matrix
+  - F - Fundamental Matrix
 
 4. Pose Recovery from the Essential Matrix:
 - ``` decompose_E() ```
