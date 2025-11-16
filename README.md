@@ -1,12 +1,12 @@
 # Structure From Motion (3D Reconstruction)
 
-* [Objective](#Objective)
-* [SFM_Pipeline](#SFM_Pipeline)
-* [Results](#Results)
-
 This project implements a complete Structure-from-Motion (SfM) pipeline from scratch. This was done as a part of Coursework for the EECE 7150 (Autonomous Field Robotics) course at Northeastern University.
 
 The pipeline reconstructs 3D points and camera poses from unordered 2D images and is validated against COLMAP.
+
+* [Objective](#Objective)
+* [SFM_Pipeline](#SFM_Pipeline)
+* [Results](#Results)
 
 ## Objective
 
