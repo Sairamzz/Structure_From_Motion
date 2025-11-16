@@ -1,1 +1,1 @@
-# Structure_From_Motion
+# Structure From Motion (3D Reconstruction)
