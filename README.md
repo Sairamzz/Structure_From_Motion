@@ -10,7 +10,7 @@ The pipeline reconstructs 3D points and camera poses from unordered 2D images an
 
 ## Objective
 
-The goal of this project was to build a full SfM system without relying on existing SLAM frameworks (COLMAP, OpenMVG, ORB-SLAM).
+The goal of this project was to build a full SfM system without relying on existing SFM frameworks.
 The pipeline includes:
 
 - Feature extraction and matching
