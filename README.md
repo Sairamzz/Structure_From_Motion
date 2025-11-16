@@ -1,14 +1,14 @@
 # Structure From Motion (3D Reconstruction)
 
-* [OBJECTIVE](#OBJECTIVE)
-* [PIPELINE_OVERVIEW](#PIPELINE_OVERVIEW)
+* [Objective](#Objective)
+* [SFM_Pipeline](#SFM_Pipeline)
 * [Results](#Results)
 
 This project implements a complete Structure-from-Motion (SfM) pipeline from scratch. This was done as a part of Coursework for the EECE 7150 (Autonomous Field Robotics) course at Northeastern University.
 
 The pipeline reconstructs 3D points and camera poses from unordered 2D images and is validated against COLMAP.
 
-## OBJECTIVE
+## Objective
 
 The goal of this project was to build a full SfM system without relying on existing SLAM frameworks (COLMAP, OpenMVG, ORB-SLAM).
 The pipeline includes:
@@ -21,7 +21,7 @@ The pipeline includes:
 - Bundle Adjustment using GTSAM
 - Visualization of camera trajectory and sparse 3D reconstruction
 
-## PIPELINE_OVERVIEW
+## SFM_Pipeline
 
 ### Camera Intrinsics (from COLMAP)
 
@@ -35,6 +35,7 @@ https://github.com/colmap/colmap
 1. Correcting Radial Distortion:
 - ``` undistort_points_simple_radial() ```
 Removes radial lens distortion for all detected keypoints using the distortion coefficient k1 obtained from COLMAP.
+
 2. Fundamental Matrix Estimation:
 - ``` normalize_points() ```
 Applies Hartley normalization to improve numerical stability before running the 8-point SVD algorithm.
@@ -44,10 +45,15 @@ Implements the normalized 8-point algorithm to compute the Fundamental matrix F 
 Computes the Sampson approximation of the geometric reprojection error — used as the scoring metric inside RANSAC.
 - ``` F_Matrix() ```
 Full RANSAC-based estimator: repeatedly samples 8 correspondences → computes F → selects the model with the most inliers (lowest Sampson error).
+
 3. Essential Matrix:
+
 *E=KTFK*
+
 K - Camera Intrinsic Matrix
+
 F - Fundamental Matrix
+
 4. Pose Recovery from the Essential Matrix:
 - ``` decompose_E() ```
 Decomposes the Essential matrix into four possible (R,t) pairs representing the relative camera motions.
@@ -121,20 +127,21 @@ GTSAM minimizes the total reprojection error and produces the final optimized re
 
 ### COLAMAP OUTPUT:
 
+``` Plotly plot ```
 <img width="1318" height="1132" alt="Screenshot from 2025-11-16 16-09-43" src="https://github.com/user-attachments/assets/ce2e1c90-30a4-4fd0-84ff-152859ee867d" />
 
 ### MY SFM OUTPUT (Before GTSAM optimization):
 
+``` Matplotlib plot ```
 <img width="577" height="590" alt="image" src="https://github.com/user-attachments/assets/cdf909f3-6d39-46d8-bfb0-0884192fe7b0" />
-                         (Matplotlib)
 
+``` Plotly plot ```
 <img width="1720" height="1265" alt="3D_Image_Reconstruction" src="https://github.com/user-attachments/assets/98a0d8f5-8629-455d-8226-90d29b9f5b9d" />
-                          (Plotly)
 
 ### MY SFM OUTPUT (After GTSAM optimization):
 
+``` Plotly plot ```
 <img width="1720" height="1265" alt="3D_Image_Reconstruction(GTSAM)" src="https://github.com/user-attachments/assets/7b324462-41ff-40bb-9b2f-5e7e4793eb90" />
-                          (Plotly)
 
 ### Quantitaive Results:
 
